@@ -6,13 +6,17 @@ const margin = css`
 `;
 
 export const CartContainer = styled.aside`
-  min-width:  33vw;
+  width: 33vw;
   height: 100%;
   
   flex-direction: column;
   display: flex;
 
   color: ${({ theme }) => theme.palette.whiteLight};
+
+  @media only screen and (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 export const TimesContainer = styled.div`
