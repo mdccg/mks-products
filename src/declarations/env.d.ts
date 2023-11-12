@@ -1,0 +1,9 @@
+declare namespace NodeJS {
+  interface ProcessEnv {
+    REACT_APP_API_BASE_URL: string;
+    REACT_APP_API_PRODUCTS_ENDPOINT: string;
+    REACT_APP_API_PRODUCTS_ENDPOINT_PER_PAGE: string;
+    REACT_APP_API_PRODUCTS_ENDPOINT_SORT_BY: string;
+    REACT_APP_API_PRODUCTS_ENDPOINT_ORDER_BY: string;
+  }
+}
