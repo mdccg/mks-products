@@ -6,7 +6,7 @@ const margin = css`
 `;
 
 export const CartContainer = styled.aside`
-  width:  33vw;
+  min-width:  33vw;
   height: 100%;
   
   flex-direction: column;
