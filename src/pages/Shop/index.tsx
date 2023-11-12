@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import Product from '../../classes/Product';
-import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
+import ProductCardSkeleton from '../../components/ProductCardSkeleton';
 import ProductDTO from '../../data-transports/ProductDTO';
 import ProductResponseDTO from '../../data-transports/ProductResponseDTO';
 import { ProductListContainer, ShopContainer } from './styles';
@@ -19,21 +21,30 @@ const Shop = () => {
         orderBy: REACT_APP_API_PRODUCTS_ENDPOINT_ORDER_BY,
       }
     }).then((res: AxiosResponse<ProductResponseDTO>) => res.data.products.map((productDTO: ProductDTO) => new Product(productDTO)))
-  ));
+  ), { retry: 3 });
 
-  if (isLoading) {
-    // mostrar skeleton
-    return <>Carregando</>;
-  }
-
-  if (error) {
-    return <></>;
-  }
+  useEffect(() => {
+    if (error) {
+      toast.error('Não foi possível buscar os produtos.');
+    }
+  }, [error]);
 
   return (
     <ShopContainer>
       <ProductListContainer>
-        {(products) && products.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
+        {(isLoading) && Array(8).fill({}).map(() => <ProductCardSkeleton />)}
+
+        {(products) && products.map((product, index) => (
+          <ProductCard key={product.id} product={product} index={index} />
+        ))}
+
+        {/* 
+        {(products) && products.map((product, index) => (index % 2 === 0) ? (
+          <ProductCard key={product.id} product={product} index={index} />
+        ): (
+          <ProductCardSkeleton />
+        ))}
+        */}
       </ProductListContainer>
     </ShopContainer>
   );

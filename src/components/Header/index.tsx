@@ -1,9 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { CartCount, CartIcon, HeaderContainer, Heading, HeadingPrefix, HeadingSuffix, ShoppingCartButton } from './styles';
 
 const Header = () => {
-  const { cartCount } = useContext(UserContext);
+  const { cart, setIsCartOpen } = useContext(UserContext);
+  const [cartCount, setCartCount] = useState<number>(0);
+
+  useEffect(() => {
+    setCartCount(cart.reduce((previousValue, { count }) => count + previousValue, 0));
+  }, [cart]);
 
   return (
     <HeaderContainer>
@@ -12,7 +17,7 @@ const Header = () => {
         <HeadingSuffix>Sistemas</HeadingSuffix>
       </Heading>
 
-      <ShoppingCartButton tabIndex={2}>
+      <ShoppingCartButton onClick={() => setIsCartOpen(true)} tabIndex={2}>
         <CartIcon />
         <CartCount>{cartCount}</CartCount>
       </ShoppingCartButton>

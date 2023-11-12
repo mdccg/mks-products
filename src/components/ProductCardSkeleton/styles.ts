@@ -1,9 +1,10 @@
+import { Skeleton } from '@mui/material';
 import styled from 'styled-components';
 import ShoppingBagIconSource from '../../assets/icons/shopping-bag.svg';
 
 const gutter = 20;
 
-export const ProductCardContainer = styled.div`
+export const ProductCardSkeletonContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   display: flex;
@@ -21,50 +22,34 @@ export const ProductCardContainer = styled.div`
   }
 `;
 
-export const ProductCardPhoto = styled.img`
-  box-sizing: border-box;
-  padding: 10px 0;
-
-  height: 150px;
-
-  border-top-left-radius:  8px;
-  border-top-right-radius: 8px;
-
-  object-fit: contain;
-  width: 100%;
-`;
+export const ProductCardSkeletonPhoto = styled(Skeleton)``;
 
 export const ProductInformation = styled.div`
   padding: 15px;
 `;
 
-export const ProductCardHeader = styled.div`
+export const ProductCardSkeletonHeader = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   display: flex;
 
-  margin-bottom: 10px;
+  margin: 10px 0;
 `;
 
-export const ProductCardName = styled.span`
+export const ProductCardSkeletonName = styled(Skeleton)`
   color: ${({ theme }) => theme.palette.text};
   font-size: 14px;
   margin-right: 10px;
+  margin-bottom: 2px;
 `;
 
-export const ProductCardPriceContainer = styled.div`
+export const ProductCardSkeletonPriceContainer = styled(Skeleton)`
   background-color: ${({ theme }) => theme.palette.priceCard};
   border-radius: 5px;
   padding: 2.5px 8px;
 `;
 
-export const ProductCardPrice = styled.span`
-  color: ${({ theme }) => theme.palette.whiteLight};
-  font-size: 14px;
-  font-weight: 700;
-`;
-
-export const ProductCardDescription = styled.span`
+export const ProductCardSkeletonDescription = styled(Skeleton)`
   color: ${({ theme }) => theme.palette.text};
   font-size: 10px;
   font-weight: 300;
@@ -95,7 +80,7 @@ export const ShoppingBagIcon = styled.img`
 
 ShoppingBagIcon.defaultProps = { src: ShoppingBagIconSource, alt: 'Ícone de uma sacola de compras' };
 
-export const BuyButtonLabel = styled.span`
+export const BuyButtonLabel = styled.div`
   color: ${({ theme }) => theme.palette.whiteLight};
   font-size: 15px;
   font-weight: 600;
