@@ -17,15 +17,19 @@ const ProductCard: FC<ProductCardProps> = ({ product: { brand, description, id, 
   const addToCart = () => {
     const existingCartProduct = cart.find(({ product }) => product.id === id);
     if (existingCartProduct) {
-      setCart((cart) => (
-        cart.map((cartProduct) => {
+      setCart((cart) => {
+        const newCart = cart.map((cartProduct) => {
+          const newCartProduct = { ...cartProduct };
+          
           if (cartProduct.product.id === id) {
-            ++cartProduct.count;
+            ++newCartProduct.count;
           }
 
-          return cartProduct;
-        })
-      ));
+          return newCartProduct;
+        });
+        
+        return newCart;
+      });
 
     } else {
       const product: Product = { brand, description, id, name, photo, price };
@@ -41,22 +45,22 @@ const ProductCard: FC<ProductCardProps> = ({ product: { brand, description, id, 
   }, [brand, name]);
 
   return (
-    <ProductCardContainer>
+    <ProductCardContainer className="product">
       <ProductCardPhoto src={photo} alt={`Foto de ${name}`} />
       
       <ProductInformation>
         <ProductCardHeader>
-          <ProductCardName title={formattedName} tabIndex={3 + index}>{formattedName}</ProductCardName>
+          <ProductCardName title={formattedName}>{formattedName}</ProductCardName>
 
           <ProductCardPriceContainer>
-            <ProductCardPrice tabIndex={4 + index}>{toBRL(price)}</ProductCardPrice>
+            <ProductCardPrice>{toBRL(price)}</ProductCardPrice>
           </ProductCardPriceContainer>
         </ProductCardHeader>
 
         <ProductCardDescription>{description}</ProductCardDescription>
       </ProductInformation>
 
-      <BuyButton onClick={addToCart}>
+      <BuyButton onClick={addToCart} id={`buy-button-${id}`}>
         <ShoppingBagIcon />
         <BuyButtonLabel>Comprar</BuyButtonLabel>
       </BuyButton>

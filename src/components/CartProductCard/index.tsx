@@ -51,7 +51,7 @@ const CartProductCard: FC<CartProductCardProps> = ({ cartProduct: { product, cou
 
   return (
     <div>
-      <CartProductCardWrapper>
+      <CartProductCardWrapper className="cart-product-card">
         <TimesWrapper>
           <TimesContainer>
             <CartCloseButton size={18} onClick={deleteFromCart} />
@@ -67,7 +67,7 @@ const CartProductCard: FC<CartProductCardProps> = ({ cartProduct: { product, cou
               <CartProductCardQuantifierLabel>Qtd:</CartProductCardQuantifierLabel>
               
               <CartProductCardQuantifier>
-                <CartProductCardQuantifierMinusButton onClick={decreaseCount} />
+                <CartProductCardQuantifierMinusButton onClick={decreaseCount} id={`minus-button-${product.id}`} />
                 
                 <VerticalRule />
 
@@ -77,12 +77,12 @@ const CartProductCard: FC<CartProductCardProps> = ({ cartProduct: { product, cou
 
                 <VerticalRule />
 
-                <CartProductCardQuantifierPlusButton onClick={increaseCount} />
+                <CartProductCardQuantifierPlusButton onClick={increaseCount} id={`plus-button-${product.id}`} />
               </CartProductCardQuantifier>
             </div>
           </CartProductCardQuantifierWrapper>
 
-          <CartProductCardPrice>{toBRL(product.price * count)}</CartProductCardPrice>
+          <CartProductCardPrice id={`cart-product-card-price-${product.id}`}>{toBRL(product.price * count)}</CartProductCardPrice>
         </CartProductCardContainer>
       </CartProductCardWrapper>
     </div>

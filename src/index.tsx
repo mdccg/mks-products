@@ -12,16 +12,14 @@ const rootHTMLElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootHTMLElement);
 
 root.render(
-  <>
-    <ThemeProvider theme={theme}>
-      <FontStyles />
-      <GlobalStyles />
+  <ThemeProvider theme={theme}>
+    <FontStyles />
+    <GlobalStyles />
 
-      <QueryClientProvider client={queryClient}>
-        <UserContextProvider>
-          <App />
-        </UserContextProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
-  </>
+    <QueryClientProvider client={queryClient}>
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );

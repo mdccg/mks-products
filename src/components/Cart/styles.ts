@@ -53,7 +53,7 @@ export const TotalLabel = styled.span`
   font-weight: 700;
 `;
 
-export const FinishBuyingButton = styled.div`
+export const FinishPurchaseButton = styled.div`
   cursor: pointer;
   
   box-sizing: border-box;
@@ -66,7 +66,7 @@ export const FinishBuyingButton = styled.div`
   display: flex;
 `;
 
-export const FinishBuyingButtonLabel = styled.span`
+export const FinishPurchaseButtonLabel = styled.span`
   color: ${({ theme }) => theme.palette.whiteLight};
   font-size: 25px;
   font-weight: 700;

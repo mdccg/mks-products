@@ -32,7 +32,7 @@ const Shop = () => {
   return (
     <ShopContainer>
       <ProductListContainer>
-        {(isLoading) && Array(8).fill({}).map(() => <ProductCardSkeleton />)}
+        {(isLoading) && Array(8).fill({}).map((_, index) => <ProductCardSkeleton key={index} />)}
 
         {(products) && products.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />

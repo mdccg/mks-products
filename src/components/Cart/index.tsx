@@ -3,15 +3,15 @@ import { UserContext } from '../../context/UserContext';
 import { toBRL } from '../../utils/formatting_utils';
 import CartCloseButton from '../CartCloseButton';
 import CartProductCard from '../CartProductCard';
-import { CartContainer, CartHeader, CartHeading, CartProductList, FinishBuyingButton, FinishBuyingButtonLabel, TimesContainer, TotalContainer, TotalLabel } from './styles';
+import { CartContainer, CartHeader, CartHeading, CartProductList, FinishPurchaseButton, FinishPurchaseButtonLabel, TimesContainer, TotalContainer, TotalLabel } from './styles';
 
 const Cart = () => {
   const { cart, setIsCartOpen } = useContext(UserContext);
   const [sum, setSum] = useState<number>(0);
 
-  const finishBuying = () => {
-    setIsCartOpen(false);
-  }
+  const close = () => setIsCartOpen(false);
+
+  const finishPurchase = () => setIsCartOpen(false);
 
   useEffect(() => {
     setSum(cart.reduce((previousValue, { count, product: { price } }) => count * price + previousValue, 0));
@@ -26,7 +26,7 @@ const Cart = () => {
           </CartHeading>
 
           <TimesContainer>
-            <CartCloseButton onClick={() => setIsCartOpen(false)} />
+            <CartCloseButton onClick={close} id="close-drawer-button" />
           </TimesContainer>
         </CartHeader>
 
@@ -37,12 +37,12 @@ const Cart = () => {
 
         <TotalContainer>
           <TotalLabel>Total:</TotalLabel>
-          <TotalLabel>{toBRL(sum)}</TotalLabel>
+          <TotalLabel id="total">{toBRL(sum)}</TotalLabel>
         </TotalContainer>
 
-        <FinishBuyingButton onClick={finishBuying}>
-          <FinishBuyingButtonLabel>Finalizar Compra</FinishBuyingButtonLabel>
-        </FinishBuyingButton>
+        <FinishPurchaseButton onClick={finishPurchase}>
+          <FinishPurchaseButtonLabel>Finalizar Compra</FinishPurchaseButtonLabel>
+        </FinishPurchaseButton>
       </CartContainer>
     </>
   );

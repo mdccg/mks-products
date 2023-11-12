@@ -6,20 +6,22 @@ const Header = () => {
   const { cart, setIsCartOpen } = useContext(UserContext);
   const [cartCount, setCartCount] = useState<number>(0);
 
+  const open = () => setIsCartOpen(true);
+
   useEffect(() => {
     setCartCount(cart.reduce((previousValue, { count }) => count + previousValue, 0));
   }, [cart]);
 
   return (
     <HeaderContainer>
-      <Heading tabIndex={1}>
+      <Heading id="heading">
         <HeadingPrefix>MKS</HeadingPrefix>
         <HeadingSuffix>Sistemas</HeadingSuffix>
       </Heading>
 
-      <ShoppingCartButton onClick={() => setIsCartOpen(true)} tabIndex={2}>
+      <ShoppingCartButton onClick={open} id="shopping-cart-button">
         <CartIcon />
-        <CartCount>{cartCount}</CartCount>
+        <CartCount id="cart-count">{cartCount}</CartCount>
       </ShoppingCartButton>
     </HeaderContainer>
   );
