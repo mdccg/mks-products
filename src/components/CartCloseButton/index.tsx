@@ -7,7 +7,7 @@ type CartCloseButtonProps = {
   id?: string;
 }
 
-const CartCloseButton: FC<CartCloseButtonProps> = ({ onClick, size = 32 }) => (
+const CartCloseButton: FC<CartCloseButtonProps> = ({ size = 32, onClick, id }) => (
   <TimesIcon style={{ width: size, height: size, borderRadius: size / 2, fontSize: size * .625 }} onClick={onClick} id={id} />
 );
 

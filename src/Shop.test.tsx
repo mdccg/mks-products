@@ -59,8 +59,8 @@ describe('Tests over product purchase flow', () => {
       const buyButton = document.querySelector('#buy-button-1') as HTMLElement;
       buyButton.click();
   
-      const closeDrawerButton = document.querySelector('#close-drawer-button');
-      (closeDrawerButton as HTMLElement).click();
+      const closeDrawerButton = document.querySelector('#close-drawer-button') as HTMLElement;
+      closeDrawerButton.click();
   
       const cartCount = document.querySelector('#cart-count') as HTMLElement;
       expect(cartCount).toHaveTextContent('1');
