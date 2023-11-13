@@ -86,8 +86,16 @@ export const PriceContainer = styled.div`
 
 export const Price = styled.span`
   background-color: ${({ theme }) => theme.palette.priceCard};
+  border-radius: 3px;
+  
   color: ${({ theme }) => theme.palette.whiteLight};
+  font-size: 15px;
   font-weight: 700;
-  padding: 8px 12px;
-  border-radius: 4px;
+  
+  width:  80px;
+  height: 30px;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
 `;
