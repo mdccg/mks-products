@@ -1,9 +1,11 @@
 import { FC, useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
 import CartProductType from '../../types/CartProductType';
 import { toBRL } from '../../utils/formatting_utils';
-import { CartProductCardWrapper, CartProductCardName, CartProductCardPhoto, CartProductCardPrice, CartProductCardQuantifier, CartProductCardQuantifierCounterContainer, CartProductCardQuantifierCounter, CartProductCardQuantifierLabel, CartProductCardQuantifierMinusButton, CartProductCardQuantifierPlusButton, VerticalRule, CartProductCardQuantifierWrapper, TimesWrapper, TimesContainer, CartProductCardContainer } from './styles';
 import CartCloseButton from '../CartCloseButton';
-import { UserContext } from '../../context/UserContext';
+import MobileCartProductCard from '../MobileCartProductCard';
+import Quantifier from '../Quantifier';
+import { CartProductCardContainer, CartProductCardName, CartProductCardPhoto, CartProductCardPrice, CartProductCardWrapper, MobileDesign, TimesContainer, TimesWrapper } from './styles';
 
 type CartProductCardProps = {
   cartProduct: CartProductType;
@@ -62,29 +64,27 @@ const CartProductCard: FC<CartProductCardProps> = ({ cartProduct: { product, cou
           <CartProductCardPhoto src={product.photo} alt={`Foto de ${formattedName}`} />
           <CartProductCardName>{formattedName}</CartProductCardName>
 
-          <CartProductCardQuantifierWrapper>
-            <div>
-              <CartProductCardQuantifierLabel>Qtd:</CartProductCardQuantifierLabel>
-              
-              <CartProductCardQuantifier>
-                <CartProductCardQuantifierMinusButton onClick={decreaseCount} id={`minus-button-${product.id}`} />
-                
-                <VerticalRule />
-
-                <CartProductCardQuantifierCounterContainer>
-                  <CartProductCardQuantifierCounter>{count}</CartProductCardQuantifierCounter>  
-                </CartProductCardQuantifierCounterContainer>
-
-                <VerticalRule />
-
-                <CartProductCardQuantifierPlusButton onClick={increaseCount} id={`plus-button-${product.id}`} />
-              </CartProductCardQuantifier>
-            </div>
-          </CartProductCardQuantifierWrapper>
+          <Quantifier
+            displayLabel
+            decreaseCount={decreaseCount}
+            count={count}
+            increaseCount={increaseCount}
+            id={product.id}
+            style={{ top: '-10px' }} />
 
           <CartProductCardPrice id={`cart-product-card-price-${product.id}`}>{toBRL(product.price * count)}</CartProductCardPrice>
         </CartProductCardContainer>
       </CartProductCardWrapper>
+
+      <MobileDesign>
+        <MobileCartProductCard
+          cartProduct={{ product, count }}
+          formattedName={formattedName}
+          deleteFromCart={deleteFromCart}
+          decreaseCount={decreaseCount}
+          increaseCount={increaseCount}
+        />
+      </MobileDesign>
     </div>
   );
 }

@@ -11,6 +11,10 @@ export const HeaderContainer = styled.header`
   height: 60px;
   padding: 20px 50px;
   padding-right: 80px;
+
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Heading = styled.h1`
@@ -22,6 +26,12 @@ export const HeadingPrefix = styled.span`
   font-weight: 600;
 
   margin-right: 8px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 30px;
+    
+    margin-right: 4px;
+  }
 `;
 
 export const HeadingSuffix = styled.span`
@@ -29,7 +39,11 @@ export const HeadingSuffix = styled.span`
   font-weight: 300;
 
   position: relative;
-  top: -4px;
+  top: -2px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 17.5px;
+  }
 `;
 
 export const ShoppingCartButton = styled.div`

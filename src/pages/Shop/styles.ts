@@ -12,6 +12,6 @@ export const ProductListContainer = styled.div`
   display: flex;
 
   @media only screen and (max-width: 768px) {
-    padding: 90px 20px;
+    padding: 20px;
   }
 `;
